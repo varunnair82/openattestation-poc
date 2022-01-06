@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "99ddbca1-e282-41bd-b5b6-cb6c8c6334d3",
+		"name": "TT-poc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "createDID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/createDID",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"createDID"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "wrap",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"recipient\": {\r\n    \"name\": \"John Doe\"\r\n  },\r\n  \"$template\": {\r\n    \"name\": \"main\",\r\n    \"type\": \"EMBEDDED_RENDERER\",\r\n    \"url\": \"https://tutorial-renderer.openattestation.com\"\r\n  },\r\n  \"issuers\": [\r\n    {\r\n      \"id\": \"did:ethr:0x906FB815De8976b1e38D9a4C1014a3acE16Ce53C\",\r\n      \"name\": \"Demo Issuer\",\r\n      \"revocation\": {\r\n        \"type\": \"NONE\"\r\n      },\r\n      \"identityProof\": {\r\n        \"type\": \"DNS-DID\",\r\n        \"location\": \"french-coral-antelope.sandbox.openattestation.com\",\r\n        \"key\": \"did:ethr:0x906FB815De8976b1e38D9a4C1014a3acE16Ce53C#controller\"\r\n      }\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/wrap",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"wrap"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sign",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "public",
+						"value": "did:ethr:0x906FB815De8976b1e38D9a4C1014a3acE16Ce53C%23controller",
+						"type": "text"
+					},
+					{
+						"key": "private",
+						"value": "0xeb5e33a04955362812ebcfdd1168b83eeb2b854a6ca730b9f8c9c99e6e1e4037",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"version\": \"https://schema.openattestation.com/2.0/schema.json\",\r\n    \"data\": {\r\n        \"recipient\": {\r\n            \"name\": \"6d5f010f-24ce-4f06-b70d-53b135a51418:string:John Doe\"\r\n        },\r\n        \"$template\": {\r\n            \"name\": \"feaacd75-dc9c-4bd7-9869-cbed71217d1f:string:main\",\r\n            \"type\": \"9f453a9a-b883-4ca5-b289-ea109206d62b:string:EMBEDDED_RENDERER\",\r\n            \"url\": \"f60aa35c-8f71-4c3a-8200-5caa9309c642:string:https://tutorial-renderer.openattestation.com\"\r\n        },\r\n        \"issuers\": [\r\n            {\r\n                \"id\": \"c7552cfc-5c67-42f8-ae06-ad4706addbe1:string:did:ethr:0x906FB815De8976b1e38D9a4C1014a3acE16Ce53C\",\r\n                \"name\": \"589943f7-de44-47dd-80da-96e8e5adebca:string:Demo Issuer\",\r\n                \"revocation\": {\r\n                    \"type\": \"deac8cf8-3d6a-4bdd-b648-364735fd13b5:string:NONE\"\r\n                },\r\n                \"identityProof\": {\r\n                    \"type\": \"d363f424-63a5-4be7-a300-981e60fb721a:string:DNS-DID\",\r\n                    \"location\": \"81b15f40-45b5-4f21-aa78-5152f8d268b9:string:french-coral-antelope.sandbox.openattestation.com\",\r\n                    \"key\": \"a0c60c97-ea0e-487a-b6fe-0fb2316da8a9:string:did:ethr:0x906FB815De8976b1e38D9a4C1014a3acE16Ce53C#controller\"\r\n                }\r\n            }\r\n        ]\r\n    },\r\n    \"signature\": {\r\n        \"type\": \"SHA3MerkleProof\",\r\n        \"targetHash\": \"dba2186ba96f4e3030b80e9c9ff59d7cac6653ecf0dcd5fd3ca68a1975737ae7\",\r\n        \"proof\": [],\r\n        \"merkleRoot\": \"dba2186ba96f4e3030b80e9c9ff59d7cac6653ecf0dcd5fd3ca68a1975737ae7\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/sign",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"sign"
+					],
+					"query": [
+						{
+							"key": "public",
+							"value": "did:ethr:0x906FB815De8976b1e38D9a4C1014a3acE16Ce53C%23controller",
+							"disabled": true
+						},
+						{
+							"key": "private",
+							"value": "0xeb5e33a04955362812ebcfdd1168b83eeb2b854a6ca730b9f8c9c99e6e1e4037",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "verify",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"version\": \"https://schema.openattestation.com/2.0/schema.json\",\r\n    \"data\": {\r\n        \"recipient\": {\r\n            \"name\": \"6d5f010f-24ce-4f06-b70d-53b135a51418:string:John Doe\"\r\n        },\r\n        \"$template\": {\r\n            \"name\": \"feaacd75-dc9c-4bd7-9869-cbed71217d1f:string:main\",\r\n            \"type\": \"9f453a9a-b883-4ca5-b289-ea109206d62b:string:EMBEDDED_RENDERER\",\r\n            \"url\": \"f60aa35c-8f71-4c3a-8200-5caa9309c642:string:https://tutorial-renderer.openattestation.com\"\r\n        },\r\n        \"issuers\": [\r\n            {\r\n                \"id\": \"c7552cfc-5c67-42f8-ae06-ad4706addbe1:string:did:ethr:0x906FB815De8976b1e38D9a4C1014a3acE16Ce53C\",\r\n                \"name\": \"589943f7-de44-47dd-80da-96e8e5adebca:string:Demo Issuer\",\r\n                \"revocation\": {\r\n                    \"type\": \"deac8cf8-3d6a-4bdd-b648-364735fd13b5:string:NONE\"\r\n                },\r\n                \"identityProof\": {\r\n                    \"type\": \"d363f424-63a5-4be7-a300-981e60fb721a:string:DNS-DID\",\r\n                    \"location\": \"81b15f40-45b5-4f21-aa78-5152f8d268b9:string:french-coral-antelope.sandbox.openattestation.com\",\r\n                    \"key\": \"a0c60c97-ea0e-487a-b6fe-0fb2316da8a9:string:did:ethr:0x906FB815De8976b1e38D9a4C1014a3acE16Ce53C#controller\"\r\n                }\r\n            }\r\n        ]\r\n    },\r\n    \"signature\": {\r\n        \"type\": \"SHA3MerkleProof\",\r\n        \"targetHash\": \"dba2186ba96f4e3030b80e9c9ff59d7cac6653ecf0dcd5fd3ca68a1975737ae7\",\r\n        \"proof\": [],\r\n        \"merkleRoot\": \"dba2186ba96f4e3030b80e9c9ff59d7cac6653ecf0dcd5fd3ca68a1975737ae7\"\r\n    },\r\n    \"proof\": [\r\n        {\r\n            \"type\": \"OpenAttestationSignature2018\",\r\n            \"created\": \"2021-09-30T18:25:47.707Z\",\r\n            \"proofPurpose\": \"assertionMethod\",\r\n            \"verificationMethod\": \"did:ethr:0x906FB815De8976b1e38D9a4C1014a3acE16Ce53C#controller\",\r\n            \"signature\": \"0x1d0718be1f1d2b46d4a0f5c98f4f9702ea4ba80093fdd4bcc731d9e6533337672ab3ab0841bc673909badf112c31c48850e557d7a3329d7a053be4778ce445451b\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/verify",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"verify"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
